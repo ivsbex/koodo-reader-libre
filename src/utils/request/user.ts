@@ -17,33 +17,6 @@ import i18n from "../../i18n";
 import { handleExitApp } from "./common";
 import { getServerRegion } from "../common";
 let userRequest: UserRequest | undefined;
-export const loginRegister = async (service: string, code: string) => {
-  let deviceName = detectBrowser();
-  let userRequest = await getUserRequest();
-  let response = await userRequest.loginRegister({
-    code,
-    provider: service,
-    scope: KookitConfig.LoginAuthRequest[service].extraParams.scope,
-    redirect_uri:
-      getServerRegion() === "china" && service === "microsoft"
-        ? KookitConfig.ThirdpartyConfig.cnCallbackUrl
-        : KookitConfig.ThirdpartyConfig.callbackUrl,
-    device_name: deviceName,
-    device_type: isElectron ? "Desktop" : "Browser",
-    device_os: getOSName(),
-    locale: navigator.language,
-    os_version: getOsVersionNumber(),
-    device_uuid: await TokenService.getFingerprint(),
-    app_version: packageJson.version,
-  });
-  if (response.code === 200) {
-    await TokenService.setToken("is_authed", "yes");
-    await TokenService.setToken("access_token", response.data.access_token);
-    await TokenService.setToken("refresh_token", response.data.refresh_token);
-    ConfigService.setItem("serverRegion", getServerRegion());
-  }
-  return response;
-};
 export const getTempToken = async () => {
   let userRequest = await getUserRequest();
   let response = await userRequest.getTempToken();
@@ -60,7 +33,7 @@ export const getTempToken = async () => {
 export const fetchUserInfo = async () => {
   let userRequest = await getUserRequest();
   let response = await userRequest.getUserInfo();
-  if (response.code === 401 || response.code === 10002) {
+  if (response.code === 401) {
     handleExitApp();
   }
   return response;

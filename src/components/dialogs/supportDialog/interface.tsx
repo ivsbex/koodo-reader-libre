@@ -5,9 +5,6 @@ export interface SupportDialogProps {
   handleShowSupport: (isShowSupport: boolean) => void;
   handleNewWarning: (isNewWarning: boolean) => void;
   handleFetchAuthed: () => void;
-  handleLoginOptionList: (
-    loginOptionList: { email: string; provider: string }[]
-  ) => void;
   handleFetchUserInfo: () => void;
   handleFetchDataSourceList: () => void;
   handleFetchDefaultSyncOption: () => void;

@@ -58,9 +58,7 @@ class SyncSetting extends React.Component<SettingInfoProps, SettingInfoState> {
       }),
       storageLocation: getStorageLocation() || "",
       isAddNew: false,
-      settingLogin: "",
       driveConfig: {},
-      loginConfig: {},
       snapshotList: [],
     };
   }

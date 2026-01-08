@@ -19,7 +19,6 @@ import { getStorageLocation, reloadManager } from "../../../utils/common";
 import { ConfigService } from "../../../assets/lib/kookit-extra-browser.min";
 import GeneralSetting from "../../../containers/settings/generalSetting";
 import SyncSetting from "../../../containers/settings/syncSetting";
-import AccountSetting from "../../../containers/settings/accountSetting";
 import PluginSetting from "../../../containers/settings/pluginSetting";
 declare var window: any;
 class SettingDialog extends React.Component<
@@ -66,9 +65,7 @@ class SettingDialog extends React.Component<
       }),
       storageLocation: getStorageLocation() || "",
       isAddNew: false,
-      settingLogin: "",
       driveConfig: {},
-      loginConfig: {},
     };
   }
   componentDidMount(): void {
@@ -304,19 +301,6 @@ class SettingDialog extends React.Component<
             >
               <Trans>Sync and backup</Trans>
             </span>
-            <span
-              className="book-bookmark-title setting-tab"
-              style={
-                this.props.settingMode === "account"
-                  ? { fontWeight: "bold", borderBottom: "2px solid" }
-                  : { opacity: 0.5 }
-              }
-              onClick={() => {
-                this.props.handleSettingMode("account");
-              }}
-            >
-              <Trans>Account</Trans>
-            </span>
           </div>
         </div>
         <div
@@ -429,8 +413,6 @@ class SettingDialog extends React.Component<
             </>
           ) : this.props.settingMode === "sync" ? (
             <SyncSetting />
-          ) : this.props.settingMode === "account" ? (
-            <AccountSetting />
           ) : (
             <PluginSetting />
           )}

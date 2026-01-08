@@ -7,17 +7,12 @@ export interface SettingInfoProps extends RouteComponentProps<any> {
   handleTokenDialog: (isOpenTokenDialog: boolean) => void;
   handleFetchDataSourceList: () => void;
   handleFetchDefaultSyncOption: () => void;
-  handleFetchLoginOptionList: () => void;
-  handleLoginOptionList: (
-    loginOptionList: { email: string; provider: string }[]
-  ) => void;
   handleFetchAuthed: () => void;
   handleLoadingDialog: (isShow: boolean) => void;
   t: (title: string) => string;
   handleFetchBooks: () => void;
   handleFetchPlugins: () => void;
   plugins: PluginModel[];
-  loginOptionList: { email: string; provider: string }[];
   defaultSyncOption: string;
   isAuthed: boolean;
   settingDrive: string;
@@ -38,6 +33,4 @@ export interface SettingInfoState {
   isAddNew: boolean;
   currentThemeIndex: number;
   driveConfig: any;
-  loginConfig: any;
-  settingLogin: string;
 }

@@ -7,13 +7,11 @@ import {
   handleFetchPlugins,
   handleFetchDataSourceList,
   handleFetchDefaultSyncOption,
-  handleFetchLoginOptionList,
   handleTokenDialog,
   handleSettingMode,
   handleSettingDrive,
   handleLoadingDialog,
   handleFetchAuthed,
-  handleLoginOptionList,
   handleFetchUserInfo,
 } from "../../../store/actions";
 import { stateType } from "../../../store";
@@ -26,7 +24,6 @@ const mapStateToProps = (state: stateType) => {
     settingMode: state.manager.settingMode,
     settingDrive: state.manager.settingDrive,
     defaultSyncOption: state.backupPage.defaultSyncOption,
-    loginOptionList: state.backupPage.loginOptionList,
   };
 };
 const actionCreator = {
@@ -38,10 +35,8 @@ const actionCreator = {
   handleFetchDefaultSyncOption,
   handleSettingMode,
   handleSettingDrive,
-  handleFetchLoginOptionList,
   handleLoadingDialog,
   handleFetchAuthed,
-  handleLoginOptionList,
   handleFetchUserInfo,
 };
 export default connect(

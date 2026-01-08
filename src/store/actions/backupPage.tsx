@@ -21,26 +21,10 @@ export function handleTokenDialog(mode: boolean) {
 export function handleDataSourceList(dataSource: any) {
   return { type: "SET_DATA_SOURCE", payload: dataSource };
 }
-export function handleLoginOptionList(loginOptionList: any) {
-  return { type: "HANDLE_LOGIN_OPTION", payload: loginOptionList };
-}
 export function handleFetchDataSourceList() {
   return (dispatch: Dispatch) => {
     let dataSourceList = ConfigService.getAllListConfig("dataSourceList") || [];
     dispatch(handleDataSourceList(dataSourceList));
-  };
-}
-export function handleFetchLoginOptionList() {
-  return async (dispatch: Dispatch) => {
-    let loginOptionList: { email: string; provider: string }[] = [];
-    let userRequest = await getUserRequest();
-    let response = await userRequest.getLoginsV2();
-    if (response.code === 200) {
-      loginOptionList = response.data;
-    } else if (response.code === 401) {
-      handleExitApp();
-    }
-    dispatch(handleLoginOptionList(loginOptionList));
   };
 }
 export function handleDefaultSyncOption(option: string) {

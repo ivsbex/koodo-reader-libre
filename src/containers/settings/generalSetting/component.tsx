@@ -68,9 +68,7 @@ class GeneralSetting extends React.Component<
       }),
       storageLocation: getStorageLocation() || "",
       isAddNew: false,
-      settingLogin: "",
       driveConfig: {},
-      loginConfig: {},
       status: {
         hasAccess: false,
         needsReauthorization: false,

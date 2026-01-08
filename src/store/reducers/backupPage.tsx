@@ -5,7 +5,6 @@ const initState = {
   isOpenImportDialog: false,
   isOpenSortShelfDialog: false,
   dataSourceList: [],
-  loginOptionList: [],
   defaultSyncOption: "",
 };
 export function backupPage(
@@ -37,11 +36,6 @@ export function backupPage(
       return {
         ...state,
         isOpenTokenDialog: action.payload,
-      };
-    case "HANDLE_LOGIN_OPTION":
-      return {
-        ...state,
-        loginOptionList: action.payload,
       };
     case "SET_DATA_SOURCE":
       return {

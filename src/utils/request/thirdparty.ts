@@ -110,11 +110,6 @@ export const encryptToken = async (service: string, config: any) => {
     return response;
   } else {
     toast.error(i18n.t("Encryption failed, error code") + ": " + response.msg);
-    if (response.code === 20004) {
-      toast(
-        i18n.t("Please login again to update your membership on this device")
-      );
-    }
     return response;
   }
 };
@@ -143,11 +138,6 @@ export const decryptToken = async (service: string) => {
     return response;
   } else {
     toast.error(i18n.t("Decryption failed, error code") + ": " + response.msg);
-    if (response.code === 20004) {
-      toast(
-        i18n.t("Please login again to update your membership on this device")
-      );
-    }
     return response;
   }
 };

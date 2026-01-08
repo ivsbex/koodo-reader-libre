@@ -38,6 +38,5 @@ export const handleExitApp = async () => {
   await TokenService.deleteToken("is_authed");
   await TokenService.deleteToken("access_token");
   await TokenService.deleteToken("refresh_token");
-  //路由到login页面
   reloadManager();
 };

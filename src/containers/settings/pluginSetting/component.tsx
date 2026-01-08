@@ -42,9 +42,7 @@ class SettingDialog extends React.Component<
       }),
       storageLocation: getStorageLocation() || "",
       isAddNew: false,
-      settingLogin: "",
       driveConfig: {},
-      loginConfig: {},
     };
   }
 

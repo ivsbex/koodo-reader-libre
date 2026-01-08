@@ -10,9 +10,6 @@ export interface UpdateInfoProps {
   handleFetchAuthed: () => void;
   handleFetchDataSourceList: () => void;
   handleFetchDefaultSyncOption: () => void;
-  handleLoginOptionList: (
-    loginOptionList: { email: string; provider: string }[]
-  ) => void;
 }
 export interface UpdateInfoState {
   updateLog: any;

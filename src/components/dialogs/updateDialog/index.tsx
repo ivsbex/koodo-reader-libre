@@ -3,7 +3,6 @@ import {
   handleNewDialog,
   handleNewWarning,
   handleFetchAuthed,
-  handleLoginOptionList,
   handleFetchDataSourceList,
   handleFetchDefaultSyncOption,
 } from "../../../store/actions";
@@ -23,7 +22,6 @@ const actionCreator = {
   handleNewDialog,
   handleNewWarning,
   handleFetchAuthed,
-  handleLoginOptionList,
   handleFetchDataSourceList,
   handleFetchDefaultSyncOption,
 };

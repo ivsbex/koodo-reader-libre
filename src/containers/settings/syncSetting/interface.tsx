@@ -8,10 +8,6 @@ export interface SettingInfoProps extends RouteComponentProps<any> {
   handleTokenDialog: (isOpenTokenDialog: boolean) => void;
   handleFetchDataSourceList: () => void;
   handleFetchDefaultSyncOption: () => void;
-  handleFetchLoginOptionList: () => void;
-  handleLoginOptionList: (
-    loginOptionList: { email: string; provider: string }[]
-  ) => void;
   handleFetchAuthed: () => void;
   handleLoadingDialog: (isShow: boolean) => void;
   t: (title: string) => string;
@@ -22,7 +18,6 @@ export interface SettingInfoProps extends RouteComponentProps<any> {
   plugins: PluginModel[];
   books: BookModel[];
   dataSourceList: string[];
-  loginOptionList: { email: string; provider: string }[];
   defaultSyncOption: string;
   isAuthed: boolean;
   settingDrive: string;
@@ -36,8 +31,6 @@ export interface SettingInfoState {
   autoOffline: boolean;
   currentThemeIndex: number;
   driveConfig: any;
-  loginConfig: any;
-  settingLogin: string;
   isAddNew: boolean;
   snapshotList: { file: string; time: number }[];
 }

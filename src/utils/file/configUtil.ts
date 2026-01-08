@@ -125,11 +125,6 @@ class ConfigUtil {
       toast.error(
         i18n.t("Synchronization failed, error code") + ": " + response.msg
       );
-      if (response.code === 20004) {
-        toast(
-          i18n.t("Please login again to update your membership on this device")
-        );
-      }
       return null;
     }
   }
@@ -144,11 +139,6 @@ class ConfigUtil {
       toast.error(
         i18n.t("Synchronization failed, error code") + ": " + response.msg
       );
-      if (response.code === 20004) {
-        toast(
-          i18n.t("Please login again to update your membership on this device")
-        );
-      }
     }
 
     this.syncData = {};

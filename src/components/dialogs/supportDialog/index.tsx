@@ -3,7 +3,6 @@ import {
   handleNewWarning,
   handleFetchAuthed,
   handleFetchUserInfo,
-  handleLoginOptionList,
   handleShowSupport,
   handleFetchDataSourceList,
   handleFetchDefaultSyncOption,
@@ -21,7 +20,6 @@ const mapStateToProps = (state: stateType) => {
 const actionCreator = {
   handleNewWarning,
   handleFetchAuthed,
-  handleLoginOptionList,
   handleFetchUserInfo,
   handleShowSupport,
   handleFetchDataSourceList,
