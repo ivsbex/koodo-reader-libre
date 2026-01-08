@@ -118,13 +118,6 @@ class BackupDialog extends React.Component<
       );
       return;
     }
-    if (
-      driveList.find((item) => item.value === event.target.value)?.isPro &&
-      !this.props.isAuthed
-    ) {
-      toast(this.props.t("This feature is not available in the free version"));
-      return;
-    }
     if (event.target.value === "add") {
       toast(this.props.t("Please add data source in the setting"));
       return;
@@ -152,9 +145,9 @@ class BackupDialog extends React.Component<
                   onChange={this.handleSelectSource}
                 >
                   {[
-                    { label: "Local", value: "local", isPro: false },
+                    { label: "Local", value: "local" },
                     ...driveList,
-                    { label: "Add data source", value: "add", isPro: false },
+                    { label: "Add data source", value: "add" },
                   ]
                     .filter(
                       (item) =>
@@ -168,9 +161,7 @@ class BackupDialog extends React.Component<
                         key={item.value}
                         className="lang-setting-option"
                       >
-                        {this.props.t(item.label) +
-                          " " +
-                          (item.isPro ? "(Pro)" : "")}
+                        {this.props.t(item.label)}
                       </option>
                     ))}
                 </select>
@@ -201,9 +192,9 @@ class BackupDialog extends React.Component<
                   onChange={this.handleSelectSource}
                 >
                   {[
-                    { label: "Local", value: "local", isPro: false },
+                    { label: "Local", value: "local" },
                     ...driveList,
-                    { label: "Add data source", value: "add", isPro: false },
+                    { label: "Add data source", value: "add" },
                   ]
                     .filter(
                       (item) =>
@@ -217,9 +208,7 @@ class BackupDialog extends React.Component<
                         key={item.value}
                         className="lang-setting-option"
                       >
-                        {this.props.t(item.label) +
-                          " " +
-                          (item.isPro ? "(Pro)" : "")}
+                        {this.props.t(item.label)}
                       </option>
                     ))}
                 </select>

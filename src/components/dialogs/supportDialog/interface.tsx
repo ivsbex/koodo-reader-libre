@@ -12,8 +12,4 @@ export interface SupportDialogProps {
   handleFetchDataSourceList: () => void;
   handleFetchDefaultSyncOption: () => void;
 }
-export interface SupportDialogState {
-  isRedeemCode: boolean;
-  isExitPro: boolean;
-  redeemCode: string;
-}
+export interface SupportDialogState {}

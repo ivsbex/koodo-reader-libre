@@ -72,18 +72,7 @@ class Login extends React.Component<LoginProps, LoginState> {
   UNSAFE_componentWillReceiveProps(
     nextProps: Readonly<LoginProps>,
     nextContext: any
-  ): void {
-    if (
-      nextProps.isShowSupport &&
-      nextProps.isShowSupport !== this.props.isShowSupport
-    ) {
-      toast(
-        this.props.t(
-          "Your Pro trial has expired, please renew it to continue using the Pro features"
-        )
-      );
-    }
-  }
+  ): void {}
   handleLogin = async (code: string, service: string) => {
     this.props.handleLoadingDialog(true);
     let res = await loginRegister(service, code);
@@ -310,7 +299,7 @@ class Login extends React.Component<LoginProps, LoginState> {
                 style={{ marginTop: "80px", marginBottom: "30px" }}
               >
                 {this.props.t(
-                  "Embark on your journey of exploration with Koodo Reader Pro"
+                  "Embark on your journey of exploration with Koodo Reader"
                 )}
               </div>
               <div className="login-option-box">
@@ -634,7 +623,7 @@ class Login extends React.Component<LoginProps, LoginState> {
                 style={{ marginTop: "80px", marginBottom: "50px" }}
               >
                 {this.props.t(
-                  "Embark on your journey of exploration with Koodo Reader Pro"
+                  "Embark on your journey of exploration with Koodo Reader"
                 )}
               </div>
               <div className="login-option-box">

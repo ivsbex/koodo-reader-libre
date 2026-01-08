@@ -103,13 +103,6 @@ class SyncSetting extends React.Component<SettingInfoProps, SettingInfoState> {
       );
       return;
     }
-    if (
-      driveList.find((item) => item.value === targetDrive)?.isPro &&
-      !this.props.isAuthed
-    ) {
-      toast(this.props.t("This feature is not available in the free version"));
-      return;
-    }
     this.props.handleSettingDrive(targetDrive);
     let settingDrive = targetDrive;
     if (
@@ -645,7 +638,6 @@ class SyncSetting extends React.Component<SettingInfoProps, SettingInfoState> {
               {
                 label: "Please select",
                 value: "",
-                isPro: false,
                 support: ["desktop", "browser", "phone"],
               },
               ...driveList,
@@ -667,7 +659,7 @@ class SyncSetting extends React.Component<SettingInfoProps, SettingInfoState> {
                     item.value === this.props.settingDrive ? true : false
                   }
                 >
-                  {this.props.t(item.label) + (item.isPro ? " (Pro)" : "")}
+                  {this.props.t(item.label)}
                 </option>
               ))}
           </select>
@@ -679,7 +671,7 @@ class SyncSetting extends React.Component<SettingInfoProps, SettingInfoState> {
             className="lang-setting-dropdown"
             onChange={this.handleDeleteDataSource}
           >
-            {[{ label: "Please select", value: "", isPro: false }, ...driveList]
+            {[{ label: "Please select", value: "" }, ...driveList]
               .filter(
                 (item) =>
                   this.props.dataSourceList.includes(item.value) ||
@@ -691,7 +683,7 @@ class SyncSetting extends React.Component<SettingInfoProps, SettingInfoState> {
                   key={item.value}
                   className="lang-setting-option"
                 >
-                  {this.props.t(item.label) + (item.isPro ? " (Pro)" : "")}
+                  {this.props.t(item.label)}
                 </option>
               ))}
           </select>
@@ -736,7 +728,7 @@ class SyncSetting extends React.Component<SettingInfoProps, SettingInfoState> {
               }}
             >
               {[
-                { label: "Please select", value: "", isPro: false },
+                { label: "Please select", value: "" },
                 ...driveList,
               ]
                 .filter(
@@ -754,7 +746,7 @@ class SyncSetting extends React.Component<SettingInfoProps, SettingInfoState> {
                       item.value === this.props.defaultSyncOption ? true : false
                     }
                   >
-                    {this.props.t(item.label) + (item.isPro ? " (Pro)" : "")}
+                    {this.props.t(item.label)}
                   </option>
                 ))}
             </select>

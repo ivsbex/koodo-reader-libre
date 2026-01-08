@@ -58,7 +58,6 @@ class Header extends React.Component<HeaderProps, HeaderState> {
       isNewVersion: false,
       width: document.body.clientWidth,
       isDataChange: false,
-      isHidePro: false,
       isSync: false,
     };
   }
@@ -93,9 +92,6 @@ class Header extends React.Component<HeaderProps, HeaderState> {
           "storageLocation",
           ConfigService.getReaderConfig("storageLocation")
         );
-      }
-      if (ConfigService.getReaderConfig("isHidePro") === "yes") {
-        this.setState({ isHidePro: true });
       }
 
       //Check for data update
@@ -232,7 +228,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
       );
       toast.success(
         this.props.t(
-          "Your data has been imported from your local folder, Upgrade to pro to get more advanced features"
+          "Your data has been imported from your local folder"
         ),
         {
           duration: 4000,
@@ -524,7 +520,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
     );
     toast.success(
       this.props.t(
-        "Your data has been exported to your local folder, learn how to sync your data to your other devices by visiting our documentation, Upgrade to pro to get more advanced features"
+        "Your data has been exported to your local folder, learn how to sync your data to your other devices by visiting our documentation"
       ),
       {
         duration: 4000,
@@ -674,36 +670,6 @@ class Header extends React.Component<HeaderProps, HeaderState> {
             </span>
           </div>
         </div>
-
-        {!this.props.isAuthed && !this.state.isHidePro ? (
-          <div className="header-report-container">
-            <span
-              style={{ textDecoration: "underline" }}
-              onClick={() => {
-                if (
-                  window.location.hostname !== "web.koodoreader.com" &&
-                  !isElectron
-                ) {
-                  this.props.handleSetting(true);
-                  this.props.handleSettingMode("account");
-                  return;
-                }
-                this.props.history.push("/login");
-              }}
-            >
-              <Trans>Pro version</Trans>
-              <span> </span>
-            </span>
-
-            <span
-              className="icon-close icon-pro-close"
-              onClick={() => {
-                ConfigService.setReaderConfig("isHidePro", "yes");
-                this.setState({ isHidePro: true });
-              }}
-            ></span>
-          </div>
-        ) : null}
 
         {KookitConfig.CloudMode !== "production" ? (
           <div className="header-report-container" style={{ right: "300px" }}>

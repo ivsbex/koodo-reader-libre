@@ -43,8 +43,6 @@ class AccountSetting extends React.Component<
       isAddNew: false,
       settingLogin: "",
       loginConfig: {},
-      isRedeemCode: false,
-      redeemCode: "",
       isSendingCode: false,
       countdown: 0,
       serverRegion: getServerRegion(),
@@ -59,18 +57,7 @@ class AccountSetting extends React.Component<
   UNSAFE_componentWillReceiveProps(
     nextProps: Readonly<SettingInfoProps>,
     nextContext: any
-  ): void {
-    if (
-      nextProps.isShowSupport &&
-      nextProps.isShowSupport !== this.props.isShowSupport
-    ) {
-      toast(
-        this.props.t(
-          "Your Pro trial has expired, please renew it to continue using the Pro features"
-        )
-      );
-    }
-  }
+  ): void {}
   handleRest = (_bool: boolean) => {
     toast.success(this.props.t("Change successful"));
   };
@@ -509,112 +496,6 @@ class AccountSetting extends React.Component<
             </div>
           </div>
         )}
-        {this.state.isRedeemCode && (
-          <div
-            className="voice-add-new-container"
-            style={{
-              marginLeft: "25px",
-              width: "calc(100% - 50px)",
-              fontWeight: 500,
-            }}
-          >
-            <input
-              type={"text"}
-              name={"redeemCode"}
-              placeholder={this.props.t("Enter your redemption code")}
-              onChange={(e) => {
-                if (e.target.value) {
-                  this.setState({
-                    redeemCode: e.target.value.trim().toUpperCase(),
-                  });
-                }
-              }}
-              onContextMenu={() => {
-                handleContextMenu("token-dialog-redeem-code-box", true);
-              }}
-              id={"token-dialog-redeem-code-box"}
-              className="token-dialog-username-box"
-              style={{ height: "35px" }}
-            />
-            <div className="token-dialog-button-container">
-              <div
-                className="voice-add-confirm"
-                onClick={async () => {
-                  toast.loading(this.props.t("Verifying..."), {
-                    id: "redeem-code",
-                  });
-                  let userRequest = await getUserRequest();
-                  let response = await userRequest.redeemCode({
-                    code: this.state.redeemCode,
-                  });
-                  if (response.code === 200) {
-                    this.props.handleFetchUserInfo();
-                    let userRequest = await getUserRequest();
-                    await userRequest.refreshUserToken();
-                    toast.success(this.props.t("Redeem successful"), {
-                      id: "redeem-code",
-                    });
-
-                    this.setState({ isRedeemCode: false });
-                  } else if (response.code === 401) {
-                    toast.error(
-                      this.props.t("Redeem failed, error code") +
-                        ": " +
-                        response.msg,
-                      {
-                        id: "redeem-code",
-                      }
-                    );
-                    handleExitApp();
-                    return;
-                  } else {
-                    toast.error(
-                      this.props.t("Redeem failed, error code") +
-                        ": " +
-                        response.msg,
-                      {
-                        id: "redeem-code",
-                      }
-                    );
-                    if (response.code === 10009) {
-                      if (getServerRegion() === "china") {
-                        toast(
-                          this.props.t(
-                            "If you have purchased the code directly from our website, please redeem with an account registered in global server region"
-                          ),
-                          {
-                            duration: 8000,
-                          }
-                        );
-                      } else {
-                        toast(
-                          this.props.t(
-                            "If you have purchased the code from Tabao store, please redeem with an account registered in Chinese server region"
-                          ),
-                          {
-                            duration: 8000,
-                          }
-                        );
-                      }
-                    }
-                  }
-                }}
-              >
-                <Trans>Redeem</Trans>
-              </div>
-              <div className="voice-add-button-container">
-                <div
-                  className="voice-add-cancel"
-                  onClick={() => {
-                    this.setState({ isRedeemCode: false });
-                  }}
-                >
-                  <Trans>Cancel</Trans>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
         <div className="setting-dialog-new-title">
           <Trans>
             {this.props.isAuthed ? "Server region" : "Select server region"}
@@ -862,13 +743,7 @@ class AccountSetting extends React.Component<
             <Trans>Account type</Trans>
             <div style={{ display: "flex", alignItems: "center" }}>
               <span>
-                <Trans>
-                  {this.props.userInfo.type === "trial"
-                    ? "Trial user"
-                    : this.props.userInfo.type === "pro"
-                    ? "Pro user"
-                    : "Free user"}
-                </Trans>
+                <Trans>Pro user</Trans>
                 {" ("}
                 <Trans
                   i18nKey="Valid until"
@@ -901,85 +776,6 @@ class AccountSetting extends React.Component<
             </div>
           </div>
         )}
-        <div
-          style={{
-            position: "absolute",
-            bottom: "0",
-            right: "0",
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            paddingRight: "10px",
-            width: "100%",
-            height: "40px",
-            zIndex: 100,
-          }}
-          className="setting-dialog-pro-button"
-        >
-          <div
-            onClick={async () => {
-              if (!this.props.isAuthed) {
-                openInBrowser(
-                  getWebsiteUrl() +
-                    (ConfigService.getReaderConfig("lang").startsWith("zh")
-                      ? "/zh"
-                      : "/en") +
-                    "/pricing"
-                );
-                return;
-              }
-              let response = await getTempToken();
-              if (response.code === 200) {
-                let tempToken = response.data.access_token;
-                let deviceUuid = await TokenService.getFingerprint();
-                openInBrowser(
-                  getWebsiteUrl() +
-                    (ConfigService.getReaderConfig("lang").startsWith("zh")
-                      ? "/zh"
-                      : "/en") +
-                    "/pricing?temp_token=" +
-                    tempToken +
-                    "&device_uuid=" +
-                    deviceUuid
-                );
-              } else if (response.code === 401) {
-                this.props.handleFetchAuthed();
-              }
-            }}
-            style={{
-              paddingLeft: "10px",
-              paddingRight: "10px",
-              fontWeight: "bold",
-              cursor: "pointer",
-            }}
-          >
-            <Trans>
-              {this.props.isAuthed && this.props.userInfo
-                ? this.props.userInfo.valid_until <
-                  parseInt(new Date().getTime() / 1000 + "")
-                  ? "Upgrade to Pro"
-                  : "Renew Pro"
-                : "Upgrade to Pro"}
-            </Trans>
-          </div>
-          <div
-            onClick={async () => {
-              if (!this.props.isAuthed) {
-                toast(this.props.t("Please log in first"));
-                return;
-              }
-              this.setState({ isRedeemCode: true });
-            }}
-            style={{
-              fontWeight: "bold",
-              paddingLeft: "10px",
-              paddingRight: "10px",
-              cursor: "pointer",
-            }}
-          >
-            <Trans>{"Redeem with code"}</Trans>
-          </div>
-        </div>
       </>
     );
   }

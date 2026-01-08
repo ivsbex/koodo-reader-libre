@@ -66,8 +66,7 @@ class UpdateInfo extends React.Component<UpdateInfoProps, UpdateInfoState> {
       }
       if (compareVersions(newVersion, packageInfo.version) > 0) {
         if (
-          ConfigService.getReaderConfig("isDisableUpdate") !== "yes" ||
-          this.props.isAuthed
+          ConfigService.getReaderConfig("isDisableUpdate") !== "yes"
         ) {
           this.setState({ updateLog: res });
           this.props.handleNewDialog(true);
@@ -116,9 +115,7 @@ class UpdateInfo extends React.Component<UpdateInfoProps, UpdateInfoState> {
                 )}
               </div>
             </div>
-            {(this.props.isAuthed &&
-              this.state.updateLog.skippable === "yes") ||
-            !this.props.isAuthed ? (
+            {this.state.updateLog.skippable === "yes" && (
               <div
                 className="setting-close-container"
                 onClick={() => {
@@ -126,26 +123,6 @@ class UpdateInfo extends React.Component<UpdateInfoProps, UpdateInfoState> {
                 }}
               >
                 <span className="icon-close setting-close"></span>
-              </div>
-            ) : (
-              <div
-                className="update-log-out-button"
-                style={{}}
-                onClick={async () => {
-                  await TokenService.deleteToken("is_authed");
-                  await TokenService.deleteToken("access_token");
-                  await TokenService.deleteToken("refresh_token");
-                  ConfigService.removeItem("defaultSyncOption");
-                  ConfigService.removeItem("dataSourceList");
-                  this.props.handleFetchAuthed();
-                  this.props.handleFetchDataSourceList();
-                  this.props.handleFetchDefaultSyncOption();
-                  this.props.handleLoginOptionList([]);
-                  toast.success(this.props.t("Log out successful"));
-                  this.handleClose();
-                }}
-              >
-                {this.props.t("Exit Pro")}
               </div>
             )}
             <div className="update-dialog-info" style={{ height: 420 }}>
