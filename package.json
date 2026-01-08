@@ -13,7 +13,8 @@
   },
   "repository": "https://github.com/koodo-reader/koodo-reader",
   "resolutions": {
-    "react-error-overlay": "6.0.9"
+    "react-error-overlay": "6.0.9",
+    "@types/react": "^17.0.38"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.485.0",

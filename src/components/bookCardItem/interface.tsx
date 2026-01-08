@@ -1,5 +1,6 @@
 import BookModel from "../../models/Book";
 import { RouteComponentProps } from "react-router";
+import { ReactNode } from "react";
 
 export interface BookCardProps extends RouteComponentProps<any> {
   book: BookModel;
@@ -16,6 +17,7 @@ export interface BookCardProps extends RouteComponentProps<any> {
   handleDragItem: (key: string) => void;
   handleSelectedBooks: (selectedBooks: string[]) => void;
   handleDeleteDialog: (isShow: boolean) => void;
+  children?: ReactNode;
 }
 export interface BookCardState {
   isFavorite: boolean;

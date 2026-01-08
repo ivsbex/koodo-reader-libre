@@ -24,18 +24,5 @@ dist/
 .env.production.local
 #.env
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-config.js*
-rewrite.sh
-bfg.jar
-kookit.js
-kookit.mjs
-kookit-extra.js
-kookit-extra.mjs
-kookit-extra-browser.js
-kookit-extra-browser.mjs
-
 /.yarn
 /.yarnrc.yml

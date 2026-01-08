@@ -241,6 +241,7 @@ export const searchList = [
   { label: "Naver", value: "naver" },
   { label: "Baidu Baike", value: "baike" },
   { label: "Wikipedia", value: "wiki" },
+  { label: "Custom", value: "custom" }
 ];
 export const skinList = [
   { label: "Follow OS", value: "system" },

@@ -1,4 +1,5 @@
 import React from "react";
+import { isElectron } from "react-device-detect";
 import "./popupOption.css";
 
 import Note from "../../../models/Note";
@@ -180,6 +181,14 @@ class PopupOption extends React.Component<PopupOptionProps> {
           "https://en.wikipedia.org/wiki/" +
             getSelection(this.props.currentBook.format)
         );
+        break;
+      case "custom":
+        if (isElectron && process !== undefined && process.env !== undefined && process.env.CUSTOM_SEARCH_URL !== undefined) {
+            this.handleJump(
+              process.env.CUSTOM_SEARCH_URL +
+                getSelection(this.props.currentBook.format)
+            );
+        }
         break;
       default:
         this.handleJump(
