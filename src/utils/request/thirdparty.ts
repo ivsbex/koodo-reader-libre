@@ -81,7 +81,7 @@ export const onSyncCallback = async (service: string, authCode: string) => {
   if (service === "yiyiwu") {
     toast(
       i18n.t(
-        "The 115 cloud is only recommended for VIP users, as it is nearly unusable for free users. Additionally, due to API issues with 115 cloud, synchronization can be very slow. If you insist on using 115 cloud storage for syncing, it is recommended to enable Koodo Sync simultaneously, which will significantly improve the synchronization speed."
+        "The 115 cloud is only recommended for VIP users, as it is nearly unusable for free users. Additionally, due to API issues with 115 cloud, synchronization can be very slow. If you insist on using 115 cloud storage for syncing, it is recommended to enable Koodo Libre Sync simultaneously, which will significantly improve the synchronization speed."
       ),
       { duration: 8000 }
     );

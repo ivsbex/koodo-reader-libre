@@ -34,7 +34,6 @@ export interface SettingInfoState {
   isAutoMaximizeWin: boolean;
   isAutoLaunch: boolean;
   isOpenInMain: boolean;
-  isDisableUpdate: boolean;
   isExportOriginalName: boolean;
   isUseOriginalName: boolean;
   isPrecacheBook: boolean;

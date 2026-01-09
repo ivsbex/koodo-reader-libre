@@ -72,7 +72,7 @@ class ConfigUtil {
         }
       }
     }
-    if (ConfigService.getReaderConfig("isEnableKoodoSync") === "yes") {
+    if (ConfigService.getReaderConfig("isEnableKoodoLibreSync") === "yes") {
       this.updateData[type] = JSON.stringify(config);
       return;
     }
@@ -145,7 +145,7 @@ class ConfigUtil {
     this.updateData = {};
   }
   static async getCloudConfig(type: string) {
-    if (ConfigService.getReaderConfig("isEnableKoodoSync") === "yes") {
+    if (ConfigService.getReaderConfig("isEnableKoodoLibreSync") === "yes") {
       let config = await this.getSyncData(type);
       return config || {};
     }
@@ -154,7 +154,7 @@ class ConfigUtil {
   }
 
   static async getCloudDatabase(database: string) {
-    if (ConfigService.getReaderConfig("isEnableKoodoSync") === "yes") {
+    if (ConfigService.getReaderConfig("isEnableKoodoLibreSync") === "yes") {
       let data = await this.getSyncData(database);
       return data || [];
     }
@@ -198,7 +198,7 @@ class ConfigUtil {
     }
   }
   static async uploadDatabase(type: string) {
-    if (ConfigService.getReaderConfig("isEnableKoodoSync") === "yes") {
+    if (ConfigService.getReaderConfig("isEnableKoodoLibreSync") === "yes") {
       let data = await DatabaseService.getAllRecords(type);
       if (type === "books") {
         data = data.map((record) => {

@@ -951,29 +951,6 @@ export const showTaskProgress = async (
   }, 1000);
   return timer;
 };
-export const compareVersions = (version1: string, version2: string) => {
-  // Split strings by '.' and convert segments to numbers
-  const parts1 = version1.split(".").map(Number);
-  const parts2 = version2.split(".").map(Number);
-
-  // Determine the maximum length to handle unequal segment counts
-  const maxLength = Math.max(parts1.length, parts2.length);
-
-  for (let i = 0; i < maxLength; i++) {
-    // Use 0 for missing segments in shorter versions
-    const part1 = parts1[i] || 0;
-    const part2 = parts2[i] || 0;
-
-    if (part1 > part2) {
-      return 1; // version1 is greater
-    }
-    if (part1 < part2) {
-      return -1; // version2 is greater
-    }
-  }
-
-  return 0; // Versions are equal
-};
 export const clearAllData = async () => {
   localStorage.clear();
   sessionStorage.clear();
@@ -997,18 +974,18 @@ export const clearAllData = async () => {
   }
   await localforage.clear();
 };
-export const resetKoodoSync = async () => {
+export const resetKoodoLibreSync = async () => {
   let encryptToken = await TokenService.getToken(
     ConfigService.getItem("defaultSyncOption") + "_token"
   );
   await updateUserConfig({
-    is_enable_koodo_sync: "no",
+    is_enable_koodo_libre_sync: "no",
     default_sync_option: ConfigService.getItem("defaultSyncOption"),
     default_sync_token: encryptToken || "",
   });
   setTimeout(() => {
     updateUserConfig({
-      is_enable_koodo_sync: "yes",
+      is_enable_koodo_libre_sync: "yes",
       default_sync_option: ConfigService.getItem("defaultSyncOption"),
       default_sync_token: encryptToken || "",
     });
@@ -1037,7 +1014,7 @@ export const handleAutoCloudSync = async () => {
       "defaultSyncOption",
       syncRes.data.default_sync_option
     );
-    ConfigService.setReaderConfig("isEnableKoodoSync", "yes");
+    ConfigService.setReaderConfig("isEnableKoodoLibreSync", "yes");
     await TokenService.setToken(
       syncRes.data.default_sync_option + "_token",
       syncRes.data.default_sync_token

@@ -283,7 +283,7 @@ class Viewer extends React.Component<ViewerProps, ViewerState> {
       this.props.handleReadingState(true);
 
       ConfigService.setListConfig(this.props.currentBook.key, "recentBooks");
-      document.title = name + " - Koodo Reader";
+      document.title = name + " - Koodo Libre Reader";
     });
   };
 

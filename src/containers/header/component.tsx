@@ -8,7 +8,6 @@ import {
   KookitConfig,
   TokenService,
 } from "../../assets/lib/kookit-extra-browser.min";
-import UpdateInfo from "../../components/dialogs/updateDialog";
 import { restoreFromConfigJson } from "../../utils/file/restore";
 import { backupToConfigJson, generateSnapshot } from "../../utils/file/backup";
 import { isElectron } from "react-device-detect";
@@ -34,12 +33,11 @@ import {
   getChatLocale,
   getWebsiteUrl,
   removeChatBox,
-  resetKoodoSync,
+  resetKoodoLibreSync,
   showTaskProgress,
   vexComfirmAsync,
 } from "../../utils/common";
 import { driveList } from "../../constants/driveList";
-import SupportDialog from "../../components/dialogs/supportDialog";
 import SyncService from "../../utils/storage/syncService";
 import { LocalFileManager } from "../../utils/file/localFile";
 import packageJson from "../../../package.json";
@@ -259,7 +257,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
       return false;
     }
     if (
-      ConfigService.getReaderConfig("isEnableKoodoSync") === "yes" &&
+      ConfigService.getReaderConfig("isEnableKoodoLibreSync") === "yes" &&
       this.props.userInfo &&
       this.props.userInfo.default_sync_option &&
       this.props.userInfo.default_sync_option !== this.props.defaultSyncOption
@@ -306,8 +304,8 @@ class Header extends React.Component<HeaderProps, HeaderState> {
         ConfigService.removeItem("defaultSyncOption");
         this.props.handleFetchDefaultSyncOption();
       }
-      if (ConfigService.getReaderConfig("isEnableKoodoSync") === "yes") {
-        resetKoodoSync();
+      if (ConfigService.getReaderConfig("isEnableKoodoLibreSync") === "yes") {
+        resetKoodoLibreSync();
       }
       toast(
         this.props.t(
@@ -327,7 +325,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
       );
       return false;
     }
-    if (ConfigService.getReaderConfig("isEnableKoodoSync") !== "yes") {
+    if (ConfigService.getReaderConfig("isEnableKoodoLibreSync") !== "yes") {
       toast.loading(
         this.props.t("Start syncing") +
           " (" +
@@ -425,7 +423,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
         }
       );
     }
-    if (ConfigService.getReaderConfig("isEnableKoodoSync") === "yes") {
+    if (ConfigService.getReaderConfig("isEnableKoodoLibreSync") === "yes") {
       ConfigUtil.updateSyncData();
     }
     //when book is empty, need to refresh the book list
@@ -434,7 +432,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
         this.props.history.push("/manager/home");
         if (
           ConfigService.getReaderConfig("isFirstSync") !== "no" &&
-          ConfigService.getReaderConfig("isEnableKoodoSync") !== "yes" &&
+          ConfigService.getReaderConfig("isEnableKoodoLibreSync") !== "yes" &&
           this.props.defaultSyncOption !== "webdav" &&
           this.props.defaultSyncOption !== "ftp" &&
           this.props.defaultSyncOption !== "sftp" &&
@@ -444,7 +442,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
         ) {
           ConfigService.setReaderConfig("isFirstSync", "no");
           let result = await vexComfirmAsync(
-            `<h3>${this.props.t("Enable Koodo Sync")}</h3><p>${
+            `<h3>${this.props.t("Enable Koodo Libre Sync")}</h3><p>${
               this.props.t(
                 "To enjoy a faster and seamless synchronization experience."
               ) +
@@ -455,12 +453,12 @@ class Header extends React.Component<HeaderProps, HeaderState> {
             }</p>`
           );
           if (result) {
-            ConfigService.setReaderConfig("isEnableKoodoSync", "yes");
+            ConfigService.setReaderConfig("isEnableKoodoLibreSync", "yes");
             let encryptedToken = await TokenService.getToken(
               this.props.defaultSyncOption + "_token"
             );
             await updateUserConfig({
-              is_enable_koodo_sync: "yes",
+              is_enable_koodo_libre_sync: "yes",
               default_sync_option: this.props.defaultSyncOption,
               default_sync_token: encryptedToken || "",
             });
@@ -691,8 +689,6 @@ class Header extends React.Component<HeaderProps, HeaderState> {
             handleDrag: this.props.handleDrag,
           }}
         />
-        <SupportDialog />
-        <UpdateInfo />
       </div>
     );
   }

@@ -46,7 +46,7 @@ export const changePath = async (newPath: string) => {
   }
 };
 export const changeLibrary = async (newPath: string) => {
-  if (!isKoodoLibrary(newPath)) {
+  if (!isKoodoLibreLibrary(newPath)) {
     toast.error(i18n.t("Please select a valid library"));
     return false;
   }
@@ -68,7 +68,7 @@ const isFolderContainsFile = (folderPath: string) => {
   const files = fs.readdirSync(folderPath);
   return files.length > 0;
 };
-const isKoodoLibrary = (folderPath: string) => {
+const isKoodoLibreLibrary = (folderPath: string) => {
   const fs = window.require("fs");
   if (!fs.existsSync(folderPath)) {
     return false;

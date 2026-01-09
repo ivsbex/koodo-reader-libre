@@ -15,7 +15,7 @@ import {
   handleContextMenu,
   openExternalUrl,
   openInBrowser,
-  resetKoodoSync,
+  resetKoodoLibreSync,
   showTaskProgress,
   testConnection,
   testCORS,
@@ -51,8 +51,8 @@ class SyncSetting extends React.Component<SettingInfoProps, SettingInfoState> {
       autoOffline: ConfigService.getReaderConfig("autoOffline") === "yes",
       isDisableAutoSync:
         ConfigService.getReaderConfig("isDisableAutoSync") === "yes",
-      isEnableKoodoSync:
-        ConfigService.getReaderConfig("isEnableKoodoSync") === "yes",
+      isEnableKoodoLibreSync:
+        ConfigService.getReaderConfig("isEnableKoodoLibreSync") === "yes",
       currentThemeIndex: _.findLastIndex(themeList, {
         name: ConfigService.getReaderConfig("themeColor"),
       }),
@@ -96,7 +96,7 @@ class SyncSetting extends React.Component<SettingInfoProps, SettingInfoState> {
     ) {
       toast(
         this.props.t(
-          "Koodo Reader's web version are limited by the browser, for more powerful features, please download the desktop version."
+          "Koodo Reader Libre's web version is limited by the browser, for more powerful features, please download the desktop version."
         )
       );
       return;
@@ -156,18 +156,18 @@ class SyncSetting extends React.Component<SettingInfoProps, SettingInfoState> {
       return;
     }
     ConfigService.setItem("defaultSyncOption", event.target.value);
-    if (ConfigService.getReaderConfig("isEnableKoodoSync") === "yes") {
-      resetKoodoSync();
+    if (ConfigService.getReaderConfig("isEnableKoodoLibreSync") === "yes") {
+      resetKoodoLibreSync();
     }
     this.props.handleFetchDefaultSyncOption();
     toast.success(this.props.t("Change successful"));
     if (
       !(await ConfigUtil.isCloudEmpty()) &&
-      ConfigService.getReaderConfig("isEnableKoodoSync") === "yes"
+      ConfigService.getReaderConfig("isEnableKoodoLibreSync") === "yes"
     ) {
       toast(
         this.props.t(
-          "This data source already contains a library. If you need to merge local and cloud data, please turn off Koodo Sync and resync."
+          "This data source already contains a library. If you need to merge local and cloud data, please turn off Koodo Libre Sync and resync."
         ),
         {
           duration: 10000,
@@ -265,20 +265,20 @@ class SyncSetting extends React.Component<SettingInfoProps, SettingInfoState> {
               className="single-control-switch"
               onClick={async () => {
                 switch (item.propName) {
-                  case "isEnableKoodoSync":
+                  case "isEnableKoodoLibreSync":
                     this.handleSetting(item.propName);
                     let encryptToken = await TokenService.getToken(
                       this.props.defaultSyncOption + "_token"
                     );
                     await updateUserConfig({
-                      is_enable_koodo_sync:
-                        ConfigService.getReaderConfig("isEnableKoodoSync"),
+                      is_enable_koodo_libre_sync:
+                        ConfigService.getReaderConfig("isEnableKoodoLibreSync"),
                       default_sync_option: this.props.defaultSyncOption,
                       default_sync_token: encryptToken || "",
                     });
                     await this.props.handleFetchUserInfo();
                     if (
-                      ConfigService.getReaderConfig("isEnableKoodoSync") ===
+                      ConfigService.getReaderConfig("isEnableKoodoLibreSync") ===
                       "yes"
                     ) {
                       this.props.cloudSyncFunc();
@@ -471,7 +471,7 @@ class SyncSetting extends React.Component<SettingInfoProps, SettingInfoState> {
                 }}
               >
                 {this.props.t(
-                  "Only WebDAV service provided by Alist is directly supported in Browser, Other WebDAV services need to enable CORS to work properly. Also due to browser's security restrictions, the WebDAV service must be accessed via HTTPS protocol when you're visiting Koodo Reader via HTTPS protocol."
+                  "Only WebDAV service provided by Alist is directly supported in Browser, Other WebDAV services need to enable CORS to work properly. Also due to browser's security restrictions, the WebDAV service must be accessed via HTTPS protocol when you're visiting Koodo Reader Libre via HTTPS protocol."
                 )}
               </div>
             )}
@@ -486,7 +486,7 @@ class SyncSetting extends React.Component<SettingInfoProps, SettingInfoState> {
                 }}
               >
                 {this.props.t(
-                  "The Koodo Reader Docker version does not support the data source feature by default. You need to modify the configuration parameters during deployment to manually enable it. Also due to browser's security restrictions, the Docker service must be accessed via HTTPS protocol when you're visiting Koodo Reader via HTTPS protocol."
+                  "The Koodo Reader (the original repository) Docker version does not support the data source feature by default. You need to modify the configuration parameters during deployment to manually enable it. Also due to browser's security restrictions, the Docker service must be accessed via HTTPS protocol when you're visiting Koodo Reader Libre via HTTPS protocol."
                 )}
               </div>
             )}
@@ -501,7 +501,7 @@ class SyncSetting extends React.Component<SettingInfoProps, SettingInfoState> {
                 }}
               >
                 {this.props.t(
-                  "Some S3 services are not compatible with browser environments. If you encounter connection issues, please refer to the service provider's official documentation for instructions on enabling CORS. Also due to browser's security restrictions, the S3 service must be accessed via HTTPS protocol when you're visiting Koodo Reader via HTTPS protocol."
+                  "Some S3 services are not compatible with browser environments. If you encounter connection issues, please refer to the service provider's official documentation for instructions on enabling CORS. Also due to browser's security restrictions, the S3 service must be accessed via HTTPS protocol when you're visiting Koodo Reader Libre via HTTPS protocol."
                 )}
               </div>
             )}
@@ -783,7 +783,7 @@ class SyncSetting extends React.Component<SettingInfoProps, SettingInfoState> {
             <p className="setting-option-subtitle">
               <Trans>
                 {
-                  "Each time you open Koodo Reader, it automatically creates a snapshot of your library (excluding books and covers). You can use these snapshots to restore your library to a previous state. Please note that restoring from a snapshot will overwrite your current data"
+                  "Each time you open Koodo Reader Libre, it automatically creates a snapshot of your library (excluding books and covers). You can use these snapshots to restore your library to a previous state. Please note that restoring from a snapshot will overwrite your current data"
                 }
               </Trans>
             </p>
@@ -809,7 +809,7 @@ class SyncSetting extends React.Component<SettingInfoProps, SettingInfoState> {
             <p className="setting-option-subtitle">
               <Trans>
                 {
-                  "Data in other devices is messed up, but the data in this device is normal. You can reset the sync record in this device, delete the KoodoReader/config folder in the data source(Turn off Koodo Sync if necessary), and sync again. This should resolve the issue"
+                  "Data in other devices is messed up, but the data in this device is normal. You can reset the sync record in this device, delete the KoodoReaderLibre/config folder in the data source (Turn off Koodo Libre Sync if necessary), and sync again. This should resolve the issue"
                 }
               </Trans>
             </p>

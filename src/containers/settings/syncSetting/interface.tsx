@@ -26,7 +26,7 @@ export interface SettingInfoState {
   appSkin: string;
   storageLocation: string;
   isKeepLocal: boolean;
-  isEnableKoodoSync: boolean;
+  isEnableKoodoLibreSync: boolean;
   isDisableAutoSync: boolean;
   autoOffline: boolean;
   currentThemeIndex: number;

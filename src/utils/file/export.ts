@@ -31,7 +31,7 @@ export const exportBooks = async (books: Book[]) => {
 
   saveAs(
     await zipFilesToBlob(booksBuffers, bookNames),
-    "KoodoReader-Book-" +
+    "KoodoReaderLibre-Book-" +
       `${year}-${month <= 9 ? "0" + month : month}-${
         day <= 9 ? "0" + day : day
       }.zip`
@@ -68,7 +68,7 @@ export const exportNotes = (notes: Note[], books: Book[]) => {
   });
   saveAs(
     new Blob([convertArrayToCSV(data)], { type: "text/csv,charset=UTF-8" }),
-    "KoodoReader-Note-" +
+    "KoodoReaderLibre-Note-" +
       `${year}-${month <= 9 ? "0" + month : month}-${
         day <= 9 ? "0" + day : day
       }.csv`
@@ -99,7 +99,7 @@ export const exportHighlights = (highlights: Note[], books: Book[]) => {
   });
   saveAs(
     new Blob([convertArrayToCSV(data)], { type: "text/csv,charset=UTF-8" }),
-    "KoodoReader-Highlight-" +
+    "KoodoReaderLibre-Highlight-" +
       `${year}-${month <= 9 ? "0" + month : month}-${
         day <= 9 ? "0" + day : day
       }.csv`
@@ -126,7 +126,7 @@ export const exportDictionaryHistory = (
 
   saveAs(
     new Blob([convertArrayToCSV(data)], { type: "text/csv,charset=UTF-8" }),
-    "KoodoReader-Dictionary-History-" +
+    "KoodoReaderLibre-Dictionary-History-" +
       `${year}-${month <= 9 ? "0" + month : month}-${
         day <= 9 ? "0" + day : day
       }.csv`

@@ -6352,13 +6352,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"buildcheck@npm:~0.0.6":
-  version: 0.0.7
-  resolution: "buildcheck@npm:0.0.7"
-  checksum: 10c0/987c605267b1b6311bb2ac0638b073d322370267445a6d059da27985fce0b41f85a59d3a9aa9af839e8ac2d63da8af07be6dc737f8bd5323e1dfe6779ad67228
-  languageName: node
-  linkType: hard
-
 "builder-util-runtime@npm:9.5.1":
   version: 9.5.1
   resolution: "builder-util-runtime@npm:9.5.1"
@@ -12364,9 +12357,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"koodo-reader@workspace:.":
+"koodo-reader-libre@workspace:.":
   version: 0.0.0-use.local
-  resolution: "koodo-reader@workspace:."
+  resolution: "koodo-reader-libre@workspace:."
   dependencies:
     "@aws-sdk/client-s3": "npm:^3.485.0"
     "@types/copy-text-to-clipboard": "npm:^2.0.4"
@@ -13369,7 +13362,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nan@npm:^2.19.0, nan@npm:^2.23.0":
+"nan@npm:^2.23.0":
   version: 2.24.0
   resolution: "nan@npm:2.24.0"
   dependencies:

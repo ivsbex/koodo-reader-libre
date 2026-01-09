@@ -144,7 +144,7 @@ export const driveInputConfig: DriveInputConfig = {
       value: "dir",
       type: "text",
       required: true,
-      example: "KoodoReader",
+      example: "KoodoReaderLibre",
     },
     {
       label: "Username",
@@ -222,7 +222,7 @@ export const driveInputConfig: DriveInputConfig = {
       value: "dir",
       type: "text",
       required: false,
-      example: "KoodoReader",
+      example: "KoodoReaderLibre",
     },
     {
       label: "Username",
@@ -263,7 +263,7 @@ export const driveInputConfig: DriveInputConfig = {
       value: "dir",
       type: "text",
       required: false,
-      example: "KoodoReader",
+      example: "KoodoReaderLibre",
     },
     {
       label: "Username",
@@ -298,14 +298,14 @@ export const driveInputConfig: DriveInputConfig = {
       value: "bucketName",
       type: "text",
       required: true,
-      example: "koodo-reader-bucket",
+      example: "koodo-reader-libre-bucket",
     },
     {
       label: "Path",
       value: "dir",
       type: "text",
       required: false,
-      example: "KoodoReader",
+      example: "KoodoReaderLibre",
     },
     {
       label: "AccessKeyId",

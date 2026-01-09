@@ -1,17 +1,17 @@
 {
-  "name": "koodo-reader",
+  "name": "koodo-reader-libre",
   "main": "main.js",
   "version": "2.2.5",
-  "description": "Koodo Reader is a cross-platform ebook reader",
+  "description": "Koodo Reader Libre is a fork of a cross-platform ebook reader",
   "author": {
-    "name": "App by Troye",
+    "name": "Fork by Werryx, original app by Troye",
     "email": "feedback@koodoreader.com"
   },
   "engines": {
     "node": ">=20.0.0",
     "npm": ">=6.0.0"
   },
-  "repository": "https://github.com/koodo-reader/koodo-reader",
+  "repository": "https://github.com/ivsbex/koodo-reader-libre",
   "resolutions": {
     "react-error-overlay": "6.0.9",
     "@types/react": "^17.0.38"
@@ -114,9 +114,9 @@
   },
   "homepage": "./",
   "build": {
-    "appId": "xyz.960960.koodo",
-    "productName": "Koodo Reader",
-    "copyright": "Copyright (c) 2020-2025 ${author}",
+    "appId": "com.werryx.koodo-libre",
+    "productName": "Koodo Reader Libre",
+    "copyright": "Copyright (c) 2025-2026 ${author}",
     "files": [
       "build/**/*",
       "node_modules/**/*",
@@ -135,8 +135,8 @@
     },
     "publish": {
       "provider": "github",
-      "repo": "koodo-reader",
-      "owner": "koodo-reader"
+      "repo": "koodo-reader-libre",
+      "owner": "ivsbex"
     },
     "buildDependenciesFromSource": false,
     "nodeGypRebuild": false,
@@ -208,68 +208,6 @@
       }
     ],
     "extends": null,
-    "dmg": {
-      "contents": [
-        {
-          "x": 410,
-          "y": 150,
-          "type": "link",
-          "path": "/Applications"
-        },
-        {
-          "x": 130,
-          "y": 150,
-          "type": "file"
-        }
-      ]
-    },
-    "mac": {
-      "darkModeSupport": true,
-      "entitlements": "assets/macos/entitlements.mac.plist",
-      "entitlementsInherit": "assets/macos/entitlements.mac.plist",
-      "identity": "Liang Guo",
-      "gatekeeperAssess": false,
-      "hardenedRuntime": true,
-      "notarize": true,
-      "target": [
-        {
-          "target": "dmg",
-          "arch": [
-            "x64",
-            "arm64"
-          ]
-        }
-      ],
-      "icon": "assets/icons/icon.icns",
-      "category": "public.app-category.productivity",
-      "artifactName": "${productName}-${version}-${arch}.${ext}"
-    },
-    "win": {
-      "target": [
-        {
-          "target": "nsis",
-          "arch": [
-            "x64",
-            "ia32",
-            "arm64"
-          ]
-        },
-        {
-          "target": "zip",
-          "arch": [
-            "x64"
-          ]
-        },
-        {
-          "target": "portable",
-          "arch": [
-            "x64"
-          ]
-        }
-      ],
-      "icon": "assets/icons/icon.ico",
-      "artifactName": "${productName}-${version}-${arch}-Win.${ext}"
-    },
     "linux": {
       "icon": "assets/icons",
       "category": "Office",
@@ -305,19 +243,12 @@
       "artifactName": "${productName}-${version}-${arch}-Portable.${ext}"
     },
     "appx": {
-      "applicationId": "com.koodoreader.electron",
-      "identityName": "AppbyTroye.KoodoReader",
+      "applicationId": "com.koodoreaderlibre.electron",
+      "identityName": "KoodoReaderFork.KoodoReaderLibre",
       "publisher": "CN=0AEAD7C6-DF4A-4D05-8FA0-D816D7DE37FF",
-      "publisherDisplayName": "App by Troye",
+      "publisherDisplayName": "App by Werryx (ivsbex)",
       "artifactName": "${productName}-${version}-${arch}.${ext}",
-      "displayName": "Koodo Reader"
-    },
-    "nsis": {
-      "artifactName": "${productName}-${version}-${arch}.${ext}",
-      "oneClick": true,
-      "allowToChangeInstallationDirectory": false,
-      "buildUniversalInstaller": false,
-      "include": "assets/windows/installer.nsh"
+      "displayName": "Koodo Reader Libre"
     },
     "snap": {
       "publish": [

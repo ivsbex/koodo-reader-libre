@@ -212,8 +212,8 @@ export function handleFetchUserInfo() {
     if (response.code === 200) {
       userInfo = response.data;
       ConfigService.setReaderConfig(
-        "isEnableKoodoSync",
-        userInfo.is_enable_koodo_sync || "no"
+        "isEnableKoodoLibreSync",
+        userInfo.is_enable_koodo_libre_sync || "no"
       );
     }
     if (
